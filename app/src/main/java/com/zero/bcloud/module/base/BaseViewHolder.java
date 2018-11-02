@@ -90,7 +90,7 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
      * 根据控件的ID设置点击
      * @param id
      */
-    public void setChildClickById(@IdRes int id){
+    public void setOnItemChildClickById(@IdRes int id){
         if(this.childClickListener == null) return;
         View child = getView(id);
         if(child == null) return;

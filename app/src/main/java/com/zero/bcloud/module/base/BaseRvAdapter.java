@@ -1,5 +1,6 @@
 package com.zero.bcloud.module.base;
 
+import android.content.Context;
 import android.support.annotation.CallSuper;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,6 +18,8 @@ import java.util.List;
 public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseViewHolder> {
 
     private RecyclerView recyclerView;
+
+    protected Context mContext;
 
     protected List<T> mData;
 
@@ -36,8 +39,9 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseViewHold
 
     public BaseRvAdapter(RecyclerView recyclerView){
         this.recyclerView = recyclerView;
+        this.mContext = this.recyclerView.getContext();
         this.mData = new ArrayList<>();
-        this.inflater = LayoutInflater.from(recyclerView.getContext());
+        this.inflater = LayoutInflater.from(this.mContext);
     }
 
     @Override
@@ -153,7 +157,7 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseViewHold
      * item子控件check事件
      * @param childChangeListener
      */
-    public void setOnItemChildChangeListener(OnItemChildCheckChangeListener childChangeListener){
+    public void setOnItemChildCheckChangeListener(OnItemChildCheckChangeListener childChangeListener){
         this.childCheckChangeListener = childCheckChangeListener;
     }
 }

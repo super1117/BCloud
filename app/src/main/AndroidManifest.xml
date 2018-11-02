@@ -43,7 +43,9 @@
 
         </activity>
 
-        <activity android:name=".module.createpdf.CreatePdfActivity">
+        <activity android:name=".module.createpdf.CreatePdfActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            android:configChanges="orientation|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
