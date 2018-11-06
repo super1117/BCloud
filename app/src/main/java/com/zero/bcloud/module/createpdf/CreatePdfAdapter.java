@@ -1,6 +1,7 @@
 package com.zero.bcloud.module.createpdf;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.FrameLayout;
@@ -25,6 +26,8 @@ public class CreatePdfAdapter extends BaseRvAdapter<ImageItem> implements OnItem
 
     private int mInfoHeight;
 
+    private boolean isEditMode;
+
     private OnItemDragCompleteListener completeListener;
 
     public CreatePdfAdapter(RecyclerView recyclerView){
@@ -45,7 +48,10 @@ public class CreatePdfAdapter extends BaseRvAdapter<ImageItem> implements OnItem
         holder.getItemView().setLayoutParams(new ViewGroup.LayoutParams(mWidth, mHeight));
         ImageView imageView = holder.getView(R.id.pdf_img);
         ImageUtils.imageLoader(imageView, model.getPath());
-        ((CheckBox) holder.getView(R.id.check)).setChecked(model.isCheck());
+        CheckBox checkBox = holder.getView(R.id.check);
+        checkBox.setVisibility(isEditMode ? View.VISIBLE : View.GONE);
+        checkBox.setTag(position);
+        checkBox.setChecked(model.isCheck());
         TextView info = holder.getView(R.id.info);
         FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) info.getLayoutParams();
         params.width = mWidth;
@@ -55,8 +61,14 @@ public class CreatePdfAdapter extends BaseRvAdapter<ImageItem> implements OnItem
     }
 
     @Override
+    public void onViewRecycled(BaseViewHolder holder) {
+        holder.getView(R.id.check).setTag(new Integer(-2));
+        super.onViewRecycled(holder);
+    }
+
+    @Override
     protected void setItemChildListener(BaseViewHolder holder, int viewType) {
-        holder.setItemChildCheckChangeById(R.id.check);
+        holder.setOnItemChildClickById(R.id.check);
     }
 
     @Override
@@ -87,5 +99,23 @@ public class CreatePdfAdapter extends BaseRvAdapter<ImageItem> implements OnItem
 
     public interface OnItemDragCompleteListener{
         void onItemDragComplete();
+    }
+
+    public void intoEditMode(){
+        if(!this.isEditMode){
+            this.isEditMode = true;
+            notifyDataSetChanged();
+        }
+    }
+
+    public void quitEditMode(){
+        if(this.isEditMode){
+            this.isEditMode = false;
+            notifyDataSetChanged();
+        }
+    }
+
+    public boolean isEditMode(){
+        return this.isEditMode;
     }
 }

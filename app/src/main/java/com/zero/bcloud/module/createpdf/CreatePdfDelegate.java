@@ -35,6 +35,7 @@ public class CreatePdfDelegate extends AppDelegate{
         this.recyclerView.setLayoutManager(new GridLayoutManager(this.getActivity(), 2));
         this.adapter = new CreatePdfAdapter(this.recyclerView);
         this.recyclerView.setAdapter(this.adapter);
+        this.setDelBtn(0);
 
         ((DefaultItemAnimator)this.recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
         OnContractImageDragCallback imageDragCallback = new OnContractImageDragCallback(this.adapter);
@@ -57,10 +58,11 @@ public class CreatePdfDelegate extends AppDelegate{
 
     private void setOnItemListener(){
         this.adapter.setOnItemLongClickListener((parent, itemView, position) -> {
-            showDelBtn();
-            return false;
+            this.adapter.intoEditMode();
+            this.hideDelBtn();
+            return true;
         });
-        this.adapter.setOnItemDragCompleteListener(()-> hideDelBtn());
+        this.adapter.setOnItemDragCompleteListener(()-> showDelBtn());
     }
 
     private void showDelBtn(){
@@ -73,7 +75,7 @@ public class CreatePdfDelegate extends AppDelegate{
         }
     }
 
-    private void hideDelBtn(){
+    public void hideDelBtn(){
         if(isDelBtnShow){
             isDelBtnShow = false;
             this.get(R.id.delete_holder).setVisibility(View.GONE);
@@ -83,7 +85,11 @@ public class CreatePdfDelegate extends AppDelegate{
         }
     }
 
-    private void setDelBtn(int delCount){
+    public boolean isDelBtnShow(){
+        return isDelBtnShow;
+    }
+
+    public void setDelBtn(int delCount){
         ((TextView)this.get(R.id.delete_count)).setText("(" + delCount + ")");
         this.get(R.id.delete_holder).setEnabled(delCount != 0);
     }

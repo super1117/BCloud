@@ -90,9 +90,9 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseViewHold
      * 给item绑定数据
      * @param holder
      * @param position
-     * @param model
+     * @param data
      */
-    protected abstract void bindData(BaseViewHolder holder, int position, T model);
+    protected abstract void bindData(BaseViewHolder holder, int position, T data);
 
     /**
      * 设置列表数据
@@ -158,6 +158,6 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseViewHold
      * @param childChangeListener
      */
     public void setOnItemChildCheckChangeListener(OnItemChildCheckChangeListener childChangeListener){
-        this.childCheckChangeListener = childCheckChangeListener;
+        this.childCheckChangeListener = childChangeListener;
     }
 }

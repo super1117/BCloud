@@ -102,14 +102,14 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
      * @param childCheckChangeListener
      */
     public void setOnItemChildCheckChangeListener(OnItemChildCheckChangeListener childCheckChangeListener){
-        this.childClickListener = childClickListener;
+        this.childCheckChangeListener = childCheckChangeListener;
     }
 
     /**
      * 根据控件ID设置check事件
      * @param id
      */
-    public void setItemChildCheckChangeById(@IdRes int id){
+    public void setOnItemChildCheckChangeById(@IdRes int id){
         if(this.childCheckChangeListener == null) return;
         View checkView = getView(id);
         if(checkView == null) return;
