@@ -5,13 +5,11 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import com.zero.bcloud.R;
-import com.zero.bcloud.module.listener.OnItemClickListener;
 import com.zero.bcloud.utils.drag.OnContractImageDragCallback;
 import com.zero.library.mvp.view.AppDelegate;
 import com.zhihu.matisse.Matisse;
@@ -20,7 +18,7 @@ import com.zhihu.matisse.engine.impl.GlideEngine;
 
 public class CreatePdfDelegate extends AppDelegate{
 
-    private static final int REQUEST_CODE_ALBUM = 0x0001;
+    public static final int REQUEST_CODE_ALBUM = 0x0001;
 
     private RecyclerView recyclerView;
 
@@ -112,6 +110,16 @@ public class CreatePdfDelegate extends AppDelegate{
                 .maxSelectable(CreatePdfModel.IMAGE_COUNT_LIMIT)
                 .imageEngine(new GlideEngine())
                 .forResult(REQUEST_CODE_ALBUM);
+    }
+
+    public void refreshImageList(){
+        this.getAdapter().notifyDataSetChanged();
+    }
+
+    public void exitImageListEditMode() {
+        this.getAdapter().quitEditMode();
+        this.setDelBtn(0);
+        this.hideDelBtn();
     }
 
 }
