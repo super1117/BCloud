@@ -14,8 +14,13 @@ import com.zero.bcloud.R;
 import com.zero.bcloud.module.listener.OnItemClickListener;
 import com.zero.bcloud.utils.drag.OnContractImageDragCallback;
 import com.zero.library.mvp.view.AppDelegate;
+import com.zhihu.matisse.Matisse;
+import com.zhihu.matisse.MimeType;
+import com.zhihu.matisse.engine.impl.GlideEngine;
 
 public class CreatePdfDelegate extends AppDelegate{
+
+    private static final int REQUEST_CODE_ALBUM = 0x0001;
 
     private RecyclerView recyclerView;
 
@@ -46,6 +51,11 @@ public class CreatePdfDelegate extends AppDelegate{
         this.recyclerView.setFocusable(false);
 
         this.setOnItemListener();
+    }
+
+    @Override
+    public int getOptionMenuId() {
+        return R.menu.menu_pdf;
     }
 
     public CreatePdfAdapter getAdapter() {
@@ -92,6 +102,16 @@ public class CreatePdfDelegate extends AppDelegate{
     public void setDelBtn(int delCount){
         ((TextView)this.get(R.id.delete_count)).setText("(" + delCount + ")");
         this.get(R.id.delete_holder).setEnabled(delCount != 0);
+    }
+
+    public void intoAlbum(){
+        Matisse.from(this.getActivity())
+                .choose(MimeType.ofImage())
+                .theme(R.style.Matisse_QiYueSuo)
+                .countable(true)
+                .maxSelectable(CreatePdfModel.IMAGE_COUNT_LIMIT)
+                .imageEngine(new GlideEngine())
+                .forResult(REQUEST_CODE_ALBUM);
     }
 
 }

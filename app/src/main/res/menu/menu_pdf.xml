@@ -5,8 +5,8 @@
     <item
         android:id="@+id/menu_pdf"
         android:title="生成"
-        android:icon="@drawable/ic_picture_as_pdf_black_24dp"
+        android:icon="@drawable/ic_done_all_24dp"
         app:showAsAction="always"
-        android:iconTint="@color/white"/>
+        android:iconTint="@color/white" />
 
 </menu>
