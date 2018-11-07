@@ -15,7 +15,7 @@
   ~ limitations under the License.
 -->
 <view xmlns:android="http://schemas.android.com/apk/res/android"
-    class="com.zero.property.view.snakebar.TSnackbar$SnackbarLayout"
+    class="com.zero.library.widget.snakebar.TSnackbar$SnackbarLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="top"

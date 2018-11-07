@@ -47,7 +47,9 @@
         android:layout_height="match_parent"
         android:id="@+id/pdf_rv"
         android:layout_below="@id/name_holder"
-        tools:listitem="@layout/item_pdf_img"/>
+        tools:listitem="@layout/item_pdf_img"
+        android:padding="8dp"
+        android:clipToPadding="false"/>
 
     <View
         android:layout_width="match_parent"

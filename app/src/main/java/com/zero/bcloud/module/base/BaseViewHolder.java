@@ -90,7 +90,7 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
      * 根据控件的ID设置点击
      * @param id
      */
-    public void setChildClickById(@IdRes int id){
+    public void setOnItemChildClickById(@IdRes int id){
         if(this.childClickListener == null) return;
         View child = getView(id);
         if(child == null) return;
@@ -102,14 +102,14 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
      * @param childCheckChangeListener
      */
     public void setOnItemChildCheckChangeListener(OnItemChildCheckChangeListener childCheckChangeListener){
-        this.childClickListener = childClickListener;
+        this.childCheckChangeListener = childCheckChangeListener;
     }
 
     /**
      * 根据控件ID设置check事件
      * @param id
      */
-    public void setItemChildCheckChangeById(@IdRes int id){
+    public void setOnItemChildCheckChangeById(@IdRes int id){
         if(this.childCheckChangeListener == null) return;
         View checkView = getView(id);
         if(checkView == null) return;

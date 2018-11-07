@@ -42,20 +42,6 @@ public class ImageUtils {
      * @param blurRadius 模糊图半径，必须大于0，越大越模糊。
      */
     public static void showUrlBlur(Context context, ImageView draweeView, String url, int blurRadius) {
-//        try {
-//            Uri uri = Uri.parse(url);
-//            ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
-//                    .setPostprocessor(new IterativeBoxBlurPostProcessor(6, blurRadius))
-//                    .build();
-//            AbstractDraweeController controller = Fresco.newDraweeControllerBuilder()
-//                    .setOldController(draweeView.getController())
-//                    .setImageRequest(request)
-//                    .build();
-//            draweeView.setController(controller);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-
         Glide.with(context)
                 .load(url)
                 .apply(bitmapTransform(new BlurTransformation(15)))
