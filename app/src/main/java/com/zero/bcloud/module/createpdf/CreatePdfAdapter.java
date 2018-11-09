@@ -6,14 +6,13 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.zero.bcloud.R;
-import com.zero.bcloud.bean.ImageItem;
 import com.zero.bcloud.module.base.BaseRvAdapter;
 import com.zero.bcloud.module.base.BaseViewHolder;
 import com.zero.bcloud.utils.drag.OnItemDragCallbackListener;
+import com.zero.library.bean.ImageItem;
 import com.zero.library.utils.DensityUtils;
 import com.zero.library.utils.ImageUtils;
 import com.zero.library.utils.ScreenUtils;
@@ -47,11 +46,11 @@ public class CreatePdfAdapter extends BaseRvAdapter<ImageItem> implements OnItem
     protected void bindData(BaseViewHolder holder, int position, ImageItem model) {
         holder.getItemView().setLayoutParams(new ViewGroup.LayoutParams(mWidth, mHeight));
         ImageView imageView = holder.getView(R.id.pdf_img);
-        ImageUtils.imageLoader(imageView, model.getPath());
+        ImageUtils.imageLoader(imageView, model.getImagePath());
         CheckBox checkBox = holder.getView(R.id.check);
         checkBox.setVisibility(isEditMode ? View.VISIBLE : View.GONE);
         checkBox.setTag(position);
-        checkBox.setChecked(model.isCheck());
+        checkBox.setChecked(model.isChecked());
         TextView info = holder.getView(R.id.info);
         FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) info.getLayoutParams();
         params.width = mWidth;

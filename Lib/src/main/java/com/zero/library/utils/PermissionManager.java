@@ -30,7 +30,7 @@ public class PermissionManager {
         this.object = object;
     }
 
-    public boolean isCheckPermissions(@NonNull String[] needPermissions, int requestCode) {
+    public boolean isRequestPermissions(int requestCode, @NonNull String... needPermissions) {
         try {
             if (Build.VERSION.SDK_INT >= 23 && this.activity.getApplicationInfo().targetSdkVersion >= 23) {
                 List<String> needRequestPermissonList = findDeniedPermissions(needPermissions);
@@ -49,7 +49,7 @@ public class PermissionManager {
                 return false;
             }
         } catch (Throwable e) {
-            Toast.makeText(this.activity, "权限获取失败", Toast.LENGTH_SHORT).show();;
+            Toast.makeText(this.activity, "权限获取失败", Toast.LENGTH_SHORT).show();
         }
         return false;
     }
@@ -62,7 +62,7 @@ public class PermissionManager {
      * @since 2.5.0
      */
     private List<String> findDeniedPermissions(String[] permissions) {
-        List<String> needRequestPermissonList = new ArrayList<String>();
+        List<String> needRequestPermissonList = new ArrayList<>();
         try {
             for (String perm : permissions) {
                 Method checkSelfMethod = this.activity.getClass().getMethod("checkSelfPermission", String.class);
@@ -74,7 +74,7 @@ public class PermissionManager {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Toast.makeText(this.activity, "权限获取失败!", Toast.LENGTH_SHORT).show();;
         }
         return needRequestPermissonList;
     }
@@ -104,23 +104,13 @@ public class PermissionManager {
         AlertDialog.Builder builder = new AlertDialog.Builder(this.activity);
         builder.setTitle("提示");
         builder.setMessage(this.activity.getResources().getString(R.string.app_name)+"未获取到权限");
-        builder.setNegativeButton("取消",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        if(listener != null){
-                            listener.cancel();
-                        }
-                    }
-                });
-        builder.setPositiveButton(R.string.setting,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        JumpPermissionManagement.GoToSetting(activity);
-                    }
-                });
+        builder.setNegativeButton("取消",(dialog, which) -> {
+            dialog.dismiss();
+            if(listener != null){
+                listener.cancel();
+            }
+        });
+        builder.setPositiveButton(R.string.setting,(dialog, which) -> JumpPermissionManagement.GoToSetting(activity));
         builder.setCancelable(false);
         builder.show();
     }

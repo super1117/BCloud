@@ -1,6 +1,6 @@
 package com.zero.bcloud.module.createpdf;
 
-import com.zero.bcloud.bean.ImageItem;
+import com.zero.library.bean.ImageItem;
 
 import java.util.List;
 

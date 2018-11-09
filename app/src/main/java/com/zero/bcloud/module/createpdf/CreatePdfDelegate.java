@@ -1,5 +1,6 @@
 package com.zero.bcloud.module.createpdf;
 
+import android.Manifest;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,6 +20,8 @@ import com.zhihu.matisse.engine.impl.GlideEngine;
 public class CreatePdfDelegate extends AppDelegate{
 
     public static final int REQUEST_CODE_ALBUM = 0x0001;
+
+    public static final int PERMISSON_REQUESTCODE = 0x0002;
 
     private RecyclerView recyclerView;
 
