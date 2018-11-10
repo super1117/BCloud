@@ -11,8 +11,7 @@ public class FileUtils {
         throw new UnsupportedOperationException("cannot be instantiated");
     }
 
-    public static String getFileSize(File file){
-        long size = file.length();
+    public static String getFileSize(long size){
         if (size < 1024) {
             return String.valueOf(size) + "B";
         } else {
