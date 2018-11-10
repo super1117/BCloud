@@ -25,6 +25,12 @@ public class PdfListAdapter extends BaseRvAdapter<PdfListItemModel> {
         ((CheckBox) holder.getView(R.id.pdf_check)).setChecked(data.isChecked());
         holder.setText(R.id.pdf_name, data.getFile().getName());
         holder.setText(R.id.pdf_date, TimeUtils.getSendTime(data.getFile().lastModified()));
-        holder.setText(R.id.pdf_size, FileUtils.getFileSize(data.getFile()));
+        holder.setText(R.id.pdf_size, FileUtils.getFileSize(data.getFile().length()));
+    }
+
+    @Override
+    protected void setItemChildListener(BaseViewHolder holder, int viewType) {
+        super.setItemChildListener(holder, viewType);
+        holder.setOnItemChildClickById(R.id.pdf_check);
     }
 }
