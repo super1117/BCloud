@@ -7,8 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 
-import com.zero.bcloud.R;
 import com.zero.bcloud.module.listener.OnItemChildCheckChangeListener;
 import com.zero.bcloud.module.listener.OnItemChildClickListener;
 import com.zero.bcloud.module.listener.OnItemClickListener;
@@ -58,6 +58,15 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
      */
     public View getItemView(){
         return this.itemView;
+    }
+
+    /**
+     * 通过id设置文字
+     * @param id
+     * @param text
+     */
+    public void setText(int id, String text){
+        ((TextView) this.getView(id)).setText(text);
     }
 
     /**

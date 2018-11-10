@@ -37,4 +37,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation project(':Lib')
     compile project(path: ':matisse')
+    implementation files('libs/itextpdf-5.5.10.jar')
 }

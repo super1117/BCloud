@@ -52,7 +52,7 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseViewHold
     @CallSuper
     @Override
     public int getItemViewType(int position) {
-        return showFooterView && position == getItemCount() ? FOOTER : onLayoutRes(position);
+        return showFooterView && position == (getItemCount() - 1) ? FOOTER : onLayoutRes(position);
     }
 
     @Override
@@ -69,7 +69,11 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseViewHold
 
     @Override
     public void onBindViewHolder(BaseViewHolder holder, int position) {
-        bindData(holder, position, getItemData(position));
+        if(showFooterView && position == (getItemCount() - 1)){
+
+        } else {
+            bindData(holder, position, getItemData(position));
+        }
     }
 
     /**

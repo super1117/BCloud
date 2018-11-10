@@ -1,6 +1,7 @@
 package com.zero.bcloud.module.createpdf;
 
 import android.Manifest;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -123,6 +124,26 @@ public class CreatePdfDelegate extends AppDelegate{
         this.getAdapter().quitEditMode();
         this.setDelBtn(0);
         this.hideDelBtn();
+    }
+
+    public void showPdfSavePath(String path) {
+        new AlertDialog
+                .Builder(getActivity(), R.style.AlertDialogTheme)
+                .setTitle("提示")
+                .setMessage("PDF文件保存路径：\n" + path)
+                .setNeutralButton("确定", null)
+                .setCancelable(true)
+                .show();
+    }
+
+    public void showPdfSaveError() {
+        new AlertDialog
+                .Builder(getActivity(), R.style.AlertDialogTheme)
+                .setTitle("提示")
+                .setMessage("生成PDF文件异常，请检查存储空间")
+                .setNeutralButton("确定", null)
+                .setCancelable(true)
+                .show();
     }
 
 }

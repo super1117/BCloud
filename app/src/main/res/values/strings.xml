@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">BCloud</string>
     <string name="image_preview">图片预览</string>
+    <string name="pdf_list">PDF文件</string>
 </resources>
