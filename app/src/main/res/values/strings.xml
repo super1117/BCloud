@@ -3,4 +3,7 @@
     <string name="image_preview">图片预览</string>
     <string name="pdf_list">PDF文件</string>
     <string name="check_all">全选</string>
+
+    <string name="del_data">确定要删除这%1$d个选项吗？</string>
+    <string name="msg_del_file">请选择要删除的文件</string>
 </resources>

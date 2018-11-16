@@ -64,10 +64,9 @@ public class CreatePdfActivity extends BaseActivityPresenter<CreatePdfDelegate> 
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.album:
-//                    if(!this.permissionManager.isRequestPermissions(CreatePdfDelegate.PERMISSON_REQUESTCODE, Manifest.permission.READ_EXTERNAL_STORAGE)){
-//                        this.viewDelegate.intoAlbum();
-//                    }
-                    start(PdfListActivity.class);
+                    if(!this.permissionManager.isRequestPermissions(CreatePdfDelegate.PERMISSON_REQUESTCODE, Manifest.permission.READ_EXTERNAL_STORAGE)){
+                        this.viewDelegate.intoAlbum();
+                    }
                     break;
                 case R.id.delete_holder:
                     this.delItems();
