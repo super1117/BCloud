@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 
 import java.io.File;
+import java.text.DecimalFormat;
 
 public class FileUtils {
 
@@ -14,22 +15,17 @@ public class FileUtils {
     public static String getFileSize(long size){
         if (size < 1024) {
             return String.valueOf(size) + "B";
-        } else {
-            size = size / 1024;
         }
+        size = size / 1024;
         if (size < 1024) {
             return String.valueOf(size) + "KB";
-        } else {
-            size = size / 1024;
         }
-        if (size < 1024) {
-            size = size * 100;
-            return String.valueOf((size / 100)) + "."
-                    + String.valueOf((size % 100)) + "MB";
+        DecimalFormat df = new DecimalFormat("0.00");
+        double sd = Double.parseDouble(df.format((double) size / 1024));
+        if (sd < 1024D) {
+            return sd +  "MB";
         } else {
-            size = size * 100 / 1024;
-            return String.valueOf((size / 100)) + "."
-                    + String.valueOf((size % 100)) + "GB";
+            return df.format(sd / 1024) + "GB";
         }
     }
 

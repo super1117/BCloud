@@ -98,7 +98,7 @@ public abstract class AppDelegate implements IDelegate{
         }
     }
 
-    protected void prompt(String message){
+    public void prompt(String message){
         new AlertDialog.Builder(this.getActivity())
                 .setTitle("提示")
                 .setMessage(message)
